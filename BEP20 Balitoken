@@ -538,5 +538,26 @@ contract BEP20Token is Context, IBEP20, Ownable {
     _balances[account] = _balances[account].add(amount);
     emit Transfer(address(0), account, amount);
   }
+   /**
+   * @dev Sets `amount` as the allowance of `spender` over the `owner`s tokens.
+   *
+   * This is internal function is equivalent to `approve`, and can be used to
+   * e.g. set automatic allowances for certain subsystems, etc.
+   *
+   * Emits an {Approval} event.
+   *
+   * Requirements:
+   *
+   * - `owner` cannot be the zero address.
+   * - `spender` cannot be the zero address.
+   */
+  function _approve(address owner, address spender, uint256 amount) internal {
+    require(owner != address(0), "BEP20: approve from the zero address");
+    require(spender != address(0), "BEP20: approve to the zero address");
+
+    _allowances[owner][spender] = amount;
+    emit Approval(owner, spender, amount);
+  
+  }
   //Bali Token Was Created to Help Bali & Indonesia by The Bali Token Guardian
 }
